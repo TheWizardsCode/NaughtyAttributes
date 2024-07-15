@@ -1,6 +1,5 @@
 # NaughtyAttributes
 [![Unity 2019.4+](https://img.shields.io/badge/unity-2019.4%2B-blue.svg)](https://unity3d.com/get-unity/download)
-[![openupm](https://img.shields.io/npm/v/com.dbrizov.naughtyattributes?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.dbrizov.naughtyattributes/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://github.com/dbrizov/NaughtyAttributes/blob/master/LICENSE)
 
 NaughtyAttributes is an extension for the Unity Inspector.
@@ -16,21 +15,14 @@ If you want all of the attributes to work in your custom editors, however, you m
 Unity **2019.4** or later versions. Don't forget to include the NaughtyAttributes namespace.
 
 ## Installation
-1. The original package, from which this repo is forked, is available on the [openupm registry](https://openupm.com). You can install it via [openupm-cli](https://github.com/openupm/openupm-cli).
-```
-openupm add com.dbrizov.naughtyattributes
-```
-2. You can also install via git url from this repository by using this URL in the package manager:
+You can cechkout this repo into your project (as a submodule if necessary). You can also install via git url by using this URL in the Unity package manager:
+
 ```
 git@github.com:TheWizardsCode/NaughtyAttributes.git
 ```
 
-## Documentation
-- [Documentation](https://dbrizov.github.io/na-docs/)
-- [Documentation Repo](https://github.com/dbrizov/na-docs)
-
 ## Support
-NaughtyAttributes is an open-source project that I am developing in my free time. If you like it you can support me by donating.
+NaughtyAttributes is an open-source project that was originally developed by the GitHub user dbrizov (see the repo this one is forked from). The links below are for donations to that user in recognition of their contribution (which is by far the majority of the work here):
 
 - [PayPal](https://paypal.me/dbrizov)
 - [Buy Me A Coffee](https://www.buymeacoffee.com/dbrizov)
