@@ -20,9 +20,9 @@ Unity **2019.4** or later versions. Don't forget to include the NaughtyAttribute
 ```
 openupm add com.dbrizov.naughtyattributes
 ```
-2. You can also install via git url from this repository by adding this entry in your **manifest.json**
+2. You can also install via git url from this repository by using this URL in the package manager:
 ```
-"com.dbrizov.naughtyattributes": "https://github.com/TheWizardsCode/NaughtyAttributes.git#upm"
+git@github.com:TheWizardsCode/NaughtyAttributes.git
 ```
 
 ## Documentation
