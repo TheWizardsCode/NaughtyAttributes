@@ -199,10 +199,22 @@ namespace NaughtyAttributes.Editor
             foreach (var condition in conditions)
             {
                 FieldInfo conditionField = ReflectionUtility.GetField(target, condition);
-                if (conditionField != null &&
-                    conditionField.FieldType == typeof(bool))
-                {
-                    conditionValues.Add((bool)conditionField.GetValue(target));
+                if (conditionField != null) {
+                    if (conditionField.FieldType == typeof(bool))
+                    {
+                        conditionValues.Add((bool)conditionField.GetValue(target));
+                    } 
+                    else if (typeof(Array).IsAssignableFrom(conditionField.FieldType) || conditionField.FieldType.IsSubclassOf(typeof(IEnumerable)))
+                    {
+                        Array array = (Array)conditionField.GetValue(target);
+                        if (array != null && array.Length > 0)
+                        {
+                            conditionValues.Add(true);
+                        } else
+                        {
+                            conditionValues.Add(false);
+                        }
+                    }
                 }
 
                 PropertyInfo conditionProperty = ReflectionUtility.GetProperty(target, condition);

@@ -500,6 +500,11 @@ public class NaughtyComponent : MonoBehaviour
 	[ShowIf("NeverShow")]
 	public Vector3 myVector;
 
+	public string[] myArray;
+
+	[HideIf("myArray), Tooltip("This will only be shown if `myArray` is not of zero length.")]
+	public arrayIsEmpty;
+
 	public bool AlwaysShow() { return true; }
 
 	public bool NeverShow => false;
