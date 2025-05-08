@@ -153,6 +153,20 @@ namespace NaughtyAttributes.Editor
                     mode == EButtonEnableMode.Editor && !Application.isPlaying ||
                     mode == EButtonEnableMode.Playmode && Application.isPlaying;
 
+                EButtonStyle style = buttonAttribute.ButtonStyle;
+                if (style == EButtonStyle.Red)
+                {
+                    _buttonStyle.normal.textColor = Color.red;
+                }
+                else if (style == EButtonStyle.Green)
+                {
+                    _buttonStyle.normal.textColor = Color.green;
+                }
+                else
+                {
+                    _buttonStyle.normal.textColor = GUI.skin.button.normal.textColor;
+                }
+
                 bool methodIsCoroutine = methodInfo.ReturnType == typeof(IEnumerator);
                 if (methodIsCoroutine)
                 {

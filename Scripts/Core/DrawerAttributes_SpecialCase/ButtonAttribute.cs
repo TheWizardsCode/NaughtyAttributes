@@ -18,16 +18,35 @@ namespace NaughtyAttributes
         Playmode
     }
 
+    public enum EButtonStyle
+    {
+        /// <summary>
+        /// Default button style
+        /// </summary>
+        Default,
+        /// <summary>
+        /// Button with red background
+        /// </summary>
+        Red,
+        /// <summary>
+        /// Button with green background
+        /// </summary>
+        Green,
+    }
+
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     public class ButtonAttribute : SpecialCaseDrawerAttribute
     {
         public string Text { get; private set; }
         public EButtonEnableMode SelectedEnableMode { get; private set; }
 
-        public ButtonAttribute(string text = null, EButtonEnableMode enabledMode = EButtonEnableMode.Always)
+        public EButtonStyle ButtonStyle { get; private set; } = EButtonStyle.Default;
+
+        public ButtonAttribute(string text = null, EButtonEnableMode enabledMode = EButtonEnableMode.Always, EButtonStyle buttonStyle = EButtonStyle.Default)
         {
             this.Text = text;
             this.SelectedEnableMode = enabledMode;
+            this.ButtonStyle = buttonStyle;
         }
     }
 }

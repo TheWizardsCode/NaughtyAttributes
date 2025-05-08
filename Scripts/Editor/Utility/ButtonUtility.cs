@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Reflection;
 using System.Collections.Generic;
+using NUnit.Framework.Internal.Filters;
 
 namespace NaughtyAttributes.Editor
 {
@@ -22,7 +23,7 @@ namespace NaughtyAttributes.Editor
             }
             else
             {
-                string message = enableIfAttribute.GetType().Name + " needs a valid boolean condition field, property or method name to work";
+                string message = $"{enableIfAttribute.GetType().Name} on {method.DeclaringType}.{method.Name} needs a valid boolean condition field, property or method name to work";
                 Debug.LogWarning(message, target);
 
                 return false;
@@ -45,7 +46,7 @@ namespace NaughtyAttributes.Editor
             }
             else
             {
-                string message = showIfAttribute.GetType().Name + " needs a valid boolean condition field, property or method name to work";
+                string message = $"{showIfAttribute.GetType().Name} on {method.DeclaringType}.{method.Name} needs a valid boolean condition field, property or method name to work";
                 Debug.LogWarning(message, target);
 
                 return false;

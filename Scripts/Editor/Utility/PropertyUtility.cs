@@ -97,7 +97,7 @@ namespace NaughtyAttributes.Editor
                     return matched != enableIfAttribute.Inverted;
                 }
 
-                string message = enableIfAttribute.GetType().Name + " needs a valid enum field, property or method name to work";
+                string message = $"{enableIfAttribute.GetType().Name} on property `{property.serializedObject.targetObject.GetType().Name}.{property.name}` needs a valid enum field, property or method name to work.";
                 Debug.LogWarning(message, property.serializedObject.targetObject);
 
                 return false;
@@ -112,7 +112,7 @@ namespace NaughtyAttributes.Editor
             }
             else
             {
-                string message = enableIfAttribute.GetType().Name + " needs a valid boolean condition field, property or method name to work";
+                string message = $"{enableIfAttribute.GetType().Name} on property `{property.serializedObject.targetObject.GetType().Name}.{property.name}` needs a valid boolean condition field, property, or method name to work.";
                 Debug.LogWarning(message, property.serializedObject.targetObject);
 
                 return false;
@@ -142,7 +142,7 @@ namespace NaughtyAttributes.Editor
                     return matched != showIfAttribute.Inverted;
                 }
 
-                string message = showIfAttribute.GetType().Name + " needs a valid enum field, property or method name to work";
+                string message = $"{showIfAttribute.GetType().Name} on property `{property.serializedObject.targetObject.GetType().Name}.{property.name}` needs a valid enum field, property or method name to work.";
                 Debug.LogWarning(message, property.serializedObject.targetObject);
 
                 return false;
@@ -157,7 +157,7 @@ namespace NaughtyAttributes.Editor
             }
             else
             {
-                string message = showIfAttribute.GetType().Name + " needs a valid boolean condition field, property or method name to work";
+                string message = $"{showIfAttribute.GetType().Name} on property `{property.serializedObject.targetObject.GetType().Name}.{property.name}` needs a valid boolean condition field, property, or method name to work.";
                 Debug.LogWarning(message, property.serializedObject.targetObject);
 
                 return false;
