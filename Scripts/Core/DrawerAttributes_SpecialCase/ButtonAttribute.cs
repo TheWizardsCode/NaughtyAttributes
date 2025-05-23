@@ -20,18 +20,10 @@ namespace NaughtyAttributes
 
     public enum EButtonStyle
     {
-        /// <summary>
-        /// Default button style
-        /// </summary>
         Default,
-        /// <summary>
-        /// Button with red background
-        /// </summary>
         Red,
-        /// <summary>
-        /// Button with green background
-        /// </summary>
         Green,
+        Orange
     }
 
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
