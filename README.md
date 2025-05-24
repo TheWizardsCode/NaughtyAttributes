@@ -491,8 +491,11 @@ public class NaughtyComponent : MonoBehaviour
 {
 	public bool showInt;
 
-	[ShowIf("showInt")]
+	[ShowIf("showInt")] // The condition can be a field, property or method
 	public int myInt;
+
+	[ShowIf("!showInt")] // The `!` operator can be used to negate the condition
+	public float myFloat;
 
 	[ShowIf("AlwaysShow")]
 	public float myFloat;

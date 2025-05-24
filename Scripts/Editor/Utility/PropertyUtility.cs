@@ -196,40 +196,56 @@ namespace NaughtyAttributes.Editor
         internal static List<bool> GetConditionValues(object target, string[] conditions)
         {
             List<bool> conditionValues = new List<bool>();
-            foreach (var condition in conditions)
+            foreach (var conditionRaw in conditions)
             {
+                string condition = conditionRaw;
+                bool negate = false;
+
+                if (!string.IsNullOrEmpty(condition) && condition[0] == '!')
+                {
+                    negate = true;
+                    condition = condition.Substring(1);
+                }
+
+                bool? value = null;
+
                 FieldInfo conditionField = ReflectionUtility.GetField(target, condition);
-                if (conditionField != null) {
+                if (conditionField != null)
+                {
                     if (conditionField.FieldType == typeof(bool))
                     {
-                        conditionValues.Add((bool)conditionField.GetValue(target));
-                    } 
+                        value = (bool)conditionField.GetValue(target);
+                    }
                     else if (typeof(Array).IsAssignableFrom(conditionField.FieldType) || conditionField.FieldType.IsSubclassOf(typeof(IEnumerable)))
                     {
                         Array array = (Array)conditionField.GetValue(target);
-                        if (array != null && array.Length > 0)
-                        {
-                            conditionValues.Add(true);
-                        } else
-                        {
-                            conditionValues.Add(false);
-                        }
+                        value = (array != null && array.Length > 0);
                     }
                 }
 
-                PropertyInfo conditionProperty = ReflectionUtility.GetProperty(target, condition);
-                if (conditionProperty != null &&
-                    conditionProperty.PropertyType == typeof(bool))
+                if (value == null)
                 {
-                    conditionValues.Add((bool)conditionProperty.GetValue(target));
+                    PropertyInfo conditionProperty = ReflectionUtility.GetProperty(target, condition);
+                    if (conditionProperty != null && conditionProperty.PropertyType == typeof(bool))
+                    {
+                        value = (bool)conditionProperty.GetValue(target);
+                    }
                 }
 
-                MethodInfo conditionMethod = ReflectionUtility.GetMethod(target, condition);
-                if (conditionMethod != null &&
-                    conditionMethod.ReturnType == typeof(bool) &&
-                    conditionMethod.GetParameters().Length == 0)
+                if (value == null)
                 {
-                    conditionValues.Add((bool)conditionMethod.Invoke(target, null));
+                    MethodInfo conditionMethod = ReflectionUtility.GetMethod(target, condition);
+                    if (conditionMethod != null &&
+                        conditionMethod.ReturnType == typeof(bool) &&
+                        conditionMethod.GetParameters().Length == 0)
+                    {
+                        value = (bool)conditionMethod.Invoke(target, null);
+                    }
+                }
+
+                if (value != null)
+                {
+                    conditionValues.Add(negate ? !value.Value : value.Value);
                 }
             }
 
